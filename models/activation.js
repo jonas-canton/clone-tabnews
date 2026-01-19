@@ -64,7 +64,6 @@ async function create(userId) {
 }
 
 async function sendEmailToUser(user, activationToken) {
-  console.log("jonas activationToken", activationToken);
   await email.send({
     from: "FinTab <contato@fintab.com.br>",
     to: user.email,
