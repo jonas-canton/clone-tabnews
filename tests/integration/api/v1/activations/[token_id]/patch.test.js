@@ -53,8 +53,6 @@ describe("PATCH /api/v1/activations/[token_id]", () => {
 
       const responseBody = await response.json();
 
-      console.log("jonas:", responseBody.message);
-
       expect(responseBody).toEqual({
         name: "NotFoundError",
         message:
