@@ -132,7 +132,7 @@ describe("PATCH /api/v1/users/[username]", () => {
       expect(responseBody).toEqual({
         action:
           "Verifique se você possui a feture necessária para atualizar outro usuário.",
-        message: "Você não pode possui permissão para atualizar outro usuário.",
+        message: "Você não possui permissão para atualizar outro usuário.",
         name: "ForbiddenError",
         status_code: 403,
       });
