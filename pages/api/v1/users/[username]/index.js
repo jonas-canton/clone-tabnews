@@ -4,13 +4,11 @@ import user from "models/user.js";
 import { ForbiddenError } from "infra/errors.js";
 import authorization from "models/authorization.js";
 
-const router = createRouter();
-
-router.use(controller.injectAnonymousOrUser);
-router.get(getHandler);
-router.patch(controller.canRequest("update:user"), patchHandler);
-
-export default router.handler(controller.errorHandlers);
+export default createRouter()
+  .use(controller.injectAnonymousOrUser)
+  .get(getHandler)
+  .patch(controller.canRequest("update:user"), patchHandler)
+  .handler(controller.errorHandlers);
 
 async function getHandler(request, response) {
   const userTryingToGet = request.context.user;
@@ -35,7 +33,7 @@ async function patchHandler(request, response) {
 
   if (!authorization.can(userTryingToPatch, "update:user", targetUser)) {
     throw new ForbiddenError({
-      message: "Você não pode possui permissão para atualizar outro usuário.",
+      message: "Você não possui permissão para atualizar outro usuário.",
       action:
         "Verifique se você possui a feture necessária para atualizar outro usuário.",
     });
